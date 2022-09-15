@@ -1,4 +1,4 @@
-import { CIPHER_KEYS } from "@/ciphers";
+import { CIPHER_KEYS } from "./ciphers/index";
 
 import Vue from "vue";
 import Router from "vue-router";
