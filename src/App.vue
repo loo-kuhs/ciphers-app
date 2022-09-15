@@ -1,8 +1,11 @@
-<script setup>
-</script>
-
 <template>
+  <router-view id="app" />
 </template>
 
-<style scoped>
-</style>
+<style></style>
+
+<script>
+export default {
+  name: "App",
+};
+</script>
