@@ -1,17 +1,22 @@
-import Vue from "vue";
+import { createApp } from "vue";
 import VueClipboard from "vue-clipboard2";
 
-import App from "./App.vue";
+import App from './App.vue'
 import router from "./router";
 import store from "./store";
 import "./register-ServiceWorker";
 
-Vue.use(VueClipboard);
 
 Vue.config.productionTip = false;
 
-new Vue({
+/* Vue.createApp({
   router,
   store,
   render: (h) => h(App),
-}).$mount("#app");
+}).mount("#app"); */
+
+createApp(App)({
+  router,
+})
+  .use(store, VueClipboard)
+  .mount("#app");

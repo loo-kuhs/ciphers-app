@@ -1,12 +1,9 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import { createStore } from "vuex";
 import { inputSamples } from "./global/variables";
-
-Vue.use(Vuex);
 
 const randomizedSampleIndex = Math.floor(Math.random() * inputSamples.length);
 
-export default new Vuex.Store({
+export default createStore({
   state: {
     isModalVisible: false,
     isEncoding: true,
