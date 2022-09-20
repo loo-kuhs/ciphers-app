@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import { createApp, h } from "vue";
 import VueClipboard from "vue-clipboard2";
 
 import App from './App.vue'
@@ -7,16 +7,10 @@ import store from "./store";
 import "./register-ServiceWorker";
 
 
-Vue.config.productionTip = false;
-
-/* Vue.createApp({
+const app = createApp({
   router,
   store,
-  render: (h) => h(App),
-}).mount("#app"); */
+  render: () => h(App)
+}).use(VueClipboard);
 
-createApp(App)({
-  router,
-})
-  .use(store, VueClipboard)
-  .mount("#app");
+app.mount("#app")

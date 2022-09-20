@@ -7,9 +7,7 @@ import Index from "./views/Index.vue";
 import About from "./views/About.vue";
 
 const router = createRouter({
-  /* mode: "history",
-  base: process.env.BASE_URL, */
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: "/",
@@ -25,7 +23,7 @@ const router = createRouter({
       ],
     },
     {
-      path: "*",
+      path: "/:pathMatch(.*)*",
       redirect: "/",
     },
   ],
