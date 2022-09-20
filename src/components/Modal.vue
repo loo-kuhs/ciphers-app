@@ -30,7 +30,7 @@
 
 <script>
 // https://github.com/davidtheclark/focus-trap
-import createFocusTrap from "focus-trap";
+import createFocusTrap from "focus-trap/dist/focus-trap";
 
 export default {
   name: "modal",

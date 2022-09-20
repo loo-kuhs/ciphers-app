@@ -1,7 +1,7 @@
 import { CIPHER_KEYS } from "./ciphers/index";
 
 import { createRouter, createWebHistory } from "vue-router";
-import store from "./store";
+import store from "./store.js";
 
 import Index from "./views/Index.vue";
 import About from "./views/About.vue";

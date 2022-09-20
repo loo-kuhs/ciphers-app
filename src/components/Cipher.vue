@@ -235,8 +235,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "~@/assets/css/_variables";
-@import "~@/assets/fonts/babelstonepigpen/font";
+@import "../assets/css/variables";
+@import "../assets/css/fonts/babelstonepigpen/font.scss";
 
 .cipher-module {
   display: flex;

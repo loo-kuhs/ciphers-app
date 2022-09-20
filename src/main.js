@@ -6,4 +6,11 @@ import router from "./router";
 import store from "./store";
 import "./register-ServiceWorker";
 
-createApp(App).use(VueClipboard, store).use(router).mount("#app");
+const app = createApp({
+  store,
+  router,
+  render: () => h(App),
+}).use(VueClipboard);
+
+app.mount("#app");
+//createApp(App).use(VueClipboard, store).use(router).mount("#app");

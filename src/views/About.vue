@@ -1,14 +1,110 @@
 <template>
-  <Modal class="about">
-    <p>Hello world</p>
+  <Modal class="about" :modal-aria-label="modalAriaLabel">
+    <component v-bind:is="cipherAbouComponent" :cipher="cipher" :utils="utils">
+    </component>
   </Modal>
 </template>
 
 <script>
-import Prism from 'prismjs';
-import Modal from '../components/Modal.vue';
+import VueMarkdown from "vue-markdown/src/VueMarkdown";
+import Prism from "prismjs";
+
+import * as utils from "../ciphers/utils";
+import { getCipherByKey } from "../ciphers/index";
+import Modal from "../components/Modal.vue";
+
 export default {
-    name: "about",
-    components: { Modal }
+  name: "about",
+  props: ["cipherKey"],
+  components: { Modal },
+  data() {
+    let cipher = getCipherByKey(this.cipherKey);
+    return {
+      utils,
+      cipher,
+      modalAriaLabel: `${cipher.NAME} informational modal`,
+      cipherAbouComponent: {
+        props: ["cipher", "utils"],
+        components: { VueMarkdown },
+        template: `<vue-markdown>${cipher.ABOUT_TEMPLATE}</vue-markdown>`,
+      },
+    };
+  },
+  mounted() {
+    Prism.highlightAll();
+  },
 };
 </script>
+
+<style lang="scss">
+@import "../assets/css/prism_theme.css";
+@import "../assets/css/variables";
+.about {
+  h1 {
+    font-size: 2.4em;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  h3 {
+    font-size: 1.8em;
+  }
+
+  h4 {
+    font-size: 1.6em;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 1em 0 0.25em;
+  }
+
+  hr {
+    margin: 3.2em 0;
+    border: 0;
+    height: 0.4em;
+    background-color: $color__gray;
+  }
+
+  p {
+    margin: 0.5em 0 1em 0;
+    font-size: 1.6em; // 16px
+  }
+
+  pre,
+  code {
+    font: normal normal 1.4em / 1.6 "Fira Code", monospace;
+    overflow: auto;
+  }
+
+  pre {
+    padding: 1em;
+    margin: 2em 0;
+    border-radius: 0.5em;
+    box-shadow: 0 0 2em $color__blue--darker--faded;
+  }
+
+  code {
+    font-size: 0.9em;
+    line-height: 2em;
+    padding: 0.25em 0.5em;
+    background-color: $color__purple--xtra-faded;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  ul,
+  ol {
+    font-size: 1.6em;
+  }
+}
+</style>
